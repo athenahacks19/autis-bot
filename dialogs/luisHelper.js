@@ -28,8 +28,9 @@ class LuisHelper {
             if (intent === 'Book_flight') {
                 // We need to get the result from the LUIS JSON which at every level returns an array
 
-                moodDetails.moods = LuisHelper.parseCompositeEntity(recognizerResult, 'moods');
+                bookingDetails.destination = LuisHelper.parseCompositeEntity(recognizerResult, 'To', 'Airport');
                 bookingDetails.origin = LuisHelper.parseCompositeEntity(recognizerResult, 'From', 'Airport');
+                moodDetails.destination = LuisHelper.parseEntity(recognizerResult, 'moods');
 
                 // This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
                 // TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
