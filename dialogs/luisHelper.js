@@ -30,7 +30,7 @@ class LuisHelper {
 
                 bookingDetails.destination = LuisHelper.parseCompositeEntity(recognizerResult, 'To', 'Airport');
                 bookingDetails.origin = LuisHelper.parseCompositeEntity(recognizerResult, 'From', 'Airport');
-                moodDetails.destination = LuisHelper.entities(recognizerResult, 'moods');
+                moodDetails.moods = LuisHelper.entities(recognizerResult, 'moods');
 
                 // This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
                 // TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
