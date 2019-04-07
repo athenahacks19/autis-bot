@@ -34,10 +34,10 @@ class checkupDialog extends CancelAndHelpDialog {
     async moodStep(stepContext) {
         const moodDetails = stepContext.options;
 
-        if (!moodDetails.moods) {
+        if (moodDetails.moods.length === 0) {
             return await stepContext.prompt(TEXT_PROMPT, { prompt: 'What did you say?' });
         } else {
-            return await stepContext.next(moodDetails.mood);
+            return await stepContext.prompt(TEXT_PROMPT, { prompt: `Why are you feeling ${moodDetails.moods}?` })
         }
     }
 
