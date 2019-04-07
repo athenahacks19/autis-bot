@@ -32,9 +32,9 @@ class checkupDialog extends CancelAndHelpDialog {
      * If a destination city has not been provided, prompt for one.
      */
     async moodStep(stepContext) {
-        const moodDetails = stepContext;
+        const moodDetails = stepContext.options;
 
-        if (moodDetails.moods.length === 0) {
+        if (!moodDetails.moods) {
             return await stepContext.prompt(TEXT_PROMPT, { prompt: 'What did you say?' });
         } else {
             return await stepContext.prompt(TEXT_PROMPT, { prompt: `Why are you feeling ${moodDetails}?` })
