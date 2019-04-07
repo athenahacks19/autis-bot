@@ -10,7 +10,7 @@ class LuisHelper {
      * @param {TurnContext} context
      */
     static async executeLuisQuery(logger, context) {
-        const bookingDetails = {};
+        const moodDetails = {};
 
         try {
             const recognizer = new LuisRecognizer({
@@ -23,12 +23,12 @@ class LuisHelper {
 
             const intent = LuisRecognizer.topIntent(recognizerResult);
 
-            bookingDetails.intent = intent;
+            moodDetails.intent = intent;
 
             if (intent === 'Book_flight') {
                 // We need to get the result from the LUIS JSON which at every level returns an array
 
-                bookingDetails.destination = LuisHelper.parseCompositeEntity(recognizerResult, 'To', 'Airport');
+                moodDetails.moods = LuisHelper.parseCompositeEntity(recognizerResult, 'moods');
                 bookingDetails.origin = LuisHelper.parseCompositeEntity(recognizerResult, 'From', 'Airport');
 
                 // This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
