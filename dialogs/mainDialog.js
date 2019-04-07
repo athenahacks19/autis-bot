@@ -85,7 +85,7 @@ class MainDialog extends ComponentDialog {
 
         // In this sample we only have a single intent we are concerned with. However, typically a scenario
         // will have multiple different intents each corresponding to starting a different child dialog.
-await stepContext.sendActivity('Yo here..')
+await stepContext.context.sendActivity('Yo here..')
         // Run the BookingDialog giving it whatever details we have from the LUIS call, it will fill out the remainder.
         return await stepContext.beginDialog('bookingDialog', bookingDetails);
     }
