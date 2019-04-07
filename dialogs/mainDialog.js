@@ -4,10 +4,12 @@
 const { TimexProperty } = require('@microsoft/recognizers-text-data-types-timex-expression');
 const { ComponentDialog, DialogSet, DialogTurnStatus, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
 const { BookingDialog } = require('./bookingDialog');
+const { checkupDialog } = require('./checkupDialog');
 const { LuisHelper } = require('./luisHelper');
 
 const MAIN_WATERFALL_DIALOG = 'mainWaterfallDialog';
 const BOOKING_DIALOG = 'bookingDialog';
+const CHECKUP_DIALOG = 'checkupDialog';
 
 class MainDialog extends ComponentDialog {
     constructor(logger) {
@@ -24,6 +26,7 @@ class MainDialog extends ComponentDialog {
         // This is a sample "book a flight" dialog.
         this.addDialog(new TextPrompt('TextPrompt'))
             .addDialog(new BookingDialog(BOOKING_DIALOG))
+            .addDialog(new checkupDialog(CHECKUP_DIALOG))
             .addDialog(new WaterfallDialog(MAIN_WATERFALL_DIALOG, [
                 this.introStep.bind(this),
                 this.actStep.bind(this),
