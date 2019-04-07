@@ -72,22 +72,22 @@ class MainDialog extends ComponentDialog {
      * Then, it hands off to the bookingDialog child dialog to collect any remaining details.
      */
     async actStep(stepContext) {
-        let bookingDetails = {};
+        let moodDetails = {};
 
         if (process.env.LuisAppId && process.env.LuisAPIKey && process.env.LuisAPIHostName) {
             // Call LUIS and gather any potential booking details.
             // This will attempt to extract the origin, destination and travel date from the user's message
             // and will then pass those values into the booking dialog
-            bookingDetails = await LuisHelper.executeLuisQuery(this.logger, stepContext.context);
+            moodDetails = await LuisHelper.executeLuisQuery(this.logger, stepContext.context);
 
-            this.logger.log('LUIS extracted these booking details:', bookingDetails);
+            this.logger.log('LUIS extracted these booking details:', JSON.stringify(moodDetails));
         }
 
         // In this sample we only have a single intent we are concerned with. However, typically a scenario
         // will have multiple different intents each corresponding to starting a different child dialog.
-await stepContext.context.sendActivity('Yo here..')
+        await stepContext.context.sendActivity('Yo here..')
         // Run the BookingDialog giving it whatever details we have from the LUIS call, it will fill out the remainder.
-        return await stepContext.beginDialog('bookingDialog', bookingDetails);
+        return await stepContext.beginDialog('checkupDialog', moodDetails);
     }
 
     /**
