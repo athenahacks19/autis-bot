@@ -37,7 +37,7 @@ class checkupDialog extends CancelAndHelpDialog {
         if (moodDetails.moods.length === 0) {
             return await stepContext.prompt(TEXT_PROMPT, { prompt: 'What did you say?' });
         } else {
-            return await stepContext.prompt(TEXT_PROMPT, { prompt: `Why are you feeling ${moodDetails.moods}?` })
+            return await stepContext.prompt(TEXT_PROMPT, { prompt: `Why are you feeling ${moodDetails}?` })
         }
     }
 
