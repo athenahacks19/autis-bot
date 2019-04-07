@@ -64,7 +64,7 @@ class MainDialog extends ComponentDialog {
             return await stepContext.next();
         }
 
-        return await stepContext.prompt('TextPrompt', { prompt: 'Hi! I\'like to be your friend! How are you feeling today?' });
+        return await stepContext.prompt('TextPrompt', { prompt: 'Hi! I\'d like to be your friend! How are you feeling today?' });
     }
 
     /**
